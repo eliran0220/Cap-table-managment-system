@@ -1,0 +1,60 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:8.0.28-oracle
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: collective_db_user_dev
+      MYSQL_PASSWORD: collective_db_password_dev
+      MYSQL_DATABASE: collective_db_dev
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+
+  phpmyadmin: 
+    image: bitnami/phpmyadmin
+    depends_on:
+      - mysql
+    environment:
+      - DATABASE_HOST=mysql
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=root
+    ports:
+      - 5080:8080
+    
+
+  app:
+    build: 
+      context: ./app
+      dockerfile: Dockerfile
+    volumes:
+      - ./app:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - api
+    ports:
+      - 5000:3000
+    env_file:
+      - ./app/.env.local
+
+
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    volumes:
+      - ./api:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 5001:3000
+    env_file:
+      - ./api/.env.local
+    depends_on:
+      - mysql
+    command: npm start
+
+   
+
+volumes:
+  mysql_data:
