@@ -20,6 +20,13 @@ After starting the application with ./init.sh, the services will be accessible a
 - App Client: http://localhost:5000
 
 - API Server: http://localhost:5001
+  - HOLDER ROUTES:
+    - POST / http://localhost:5001/holder (body should include attribute name: string)
+    - DELETE / http://localhost:5001/holder/:holderId
+    - GET / http://localhost:5001/holder
+  - SHARES ROUTES:
+    - PUT / http://localhost:5001/allocate/:holderId (body should contain attribute quantity: number)
+    - PUT / http://localhost:5001/redeem/:holderId (body should contain attribute quantity: number)
 
 - phpMyAdmin: http://localhost:5080 (user and password:root)
 
