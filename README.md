@@ -20,7 +20,7 @@ After starting the application with ./init.sh, the services will be accessible a
 - App Client: http://localhost:5000
 
 - API Server: http://localhost:5001
-- 
+  
 - phpMyAdmin: http://localhost:5080 (user and password:root)
 
 The API will restart when updated, the front end app has hot-reload enabled.
