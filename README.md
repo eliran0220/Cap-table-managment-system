@@ -2,6 +2,8 @@
 
 ## Quickstart
 
+THE DATABASE IS INITIATED AT THE START AND A HOLDER IS INSERTED
+
 To quickly start up the entire application, run:
 
 ```bash
